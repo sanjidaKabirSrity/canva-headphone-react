@@ -7,6 +7,8 @@ import Header from "./Shared/Header";
 import Home from "./Pages/HomePage/Home";
 import NotFound from './Pages/NotFoundPage/NotFound';
 import Footer from "./Shared/Footer";
+import SingleProduct from "./Pages/ProductsPage/SingleProduct";
+import Products from "./Pages/ProductsPage/Products";
 
 const theme = createTheme({
   palette: {
@@ -68,23 +70,21 @@ function App(props) {
                 <Switch>
                   <Route exact path="/">
                     <Home></Home>
-                    {/* <Home classes={classes} theme={theme}></Home> */}
                   </Route>
                   <Route exact path="/home">
                     <Home></Home>
                   </Route>
-                  <Route exact path="/services">
-                    {/* <Services></Services> */}
+                  <Route exact path="/products">
+                    <Products></Products>
                   </Route>
-                  <Route exact path="/about">
-                    {/* <About></About> */}
+                  <Route exact path="/products/:productId">
+                    <SingleProduct></SingleProduct>
                   </Route>
-                  <Route exact path="/contact">
+                  <Route exact path="/signup">
                     {/* <About></About> */}
                   </Route>
                   <Route exact path="*">
                     <NotFound></NotFound>
-                    {/* <NotFound classes={classes} theme={theme}></NotFound> */}
                   </Route>
                 </Switch>
                 <Footer></Footer>

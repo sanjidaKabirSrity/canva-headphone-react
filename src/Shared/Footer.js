@@ -9,7 +9,7 @@ const Footer = () => {
     return (
         <Box sx={{ flexGrow: 1}}>
             <Container sx={{pb:5}}>
-            <Grid container spacing={{ xs: 0, sm:3, md: 5 }} columns={{ xs: 4, sm: 6, md: 12 }}>
+            <Grid container spacing={{ xs: 3, sm:3, md: 5 }} columns={{ xs: 4, sm: 6, md: 12 }}>
                 <Grid item xs={4} sm={3} md={3}>
                     <Box sx={{pt:5}}>
                         <img src={footerLogo} alt="" />

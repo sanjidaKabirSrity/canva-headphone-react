@@ -66,7 +66,7 @@ const Header = ({classes, theme}) => {
                       <MenuItem
                         onClick={() => setAnchor(null)}
                         component={Link}
-                        to="/services"
+                        to="/products"
                       >
                         <Typography variant="h6"
                         sx={{
@@ -74,7 +74,7 @@ const Header = ({classes, theme}) => {
                             sm:{color:"black"},
                             md:{color:"white"}
                         }}
-                        > Services </Typography>
+                        > Products </Typography>
                       </MenuItem>
                       <MenuItem
                         onClick={() => setAnchor(null)}
@@ -130,10 +130,10 @@ const Header = ({classes, theme}) => {
                     <Button
                       variant="text"
                       component={Link}
-                      to="/services"
+                      to="/products"
                       color="primary"
                     >
-                      Services
+                      Products
                     </Button>
                     <Button
                       variant="text"
