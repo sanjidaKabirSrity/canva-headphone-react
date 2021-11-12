@@ -1,9 +1,10 @@
 import { AppBar, IconButton,Button, Box, Toolbar, Typography, Container } from '@mui/material';
 import { MenuItem, Menu , useMediaQuery } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-router-dom";
+import { Link  , useHistory } from 'react-router-dom';
 import React from 'react';
 import logo from "../Images/logo.png"
+import useAuth from '../Hooks/useAuth';
 
 const Header = ({classes, theme}) => {
     const [anchor, setAnchor] = React.useState(null);
@@ -13,9 +14,15 @@ const Header = ({classes, theme}) => {
         setAnchor(event.currentTarget);
       };
 
+      const { user, logOut } = useAuth();
+
+      const history = useHistory();
+      const handleClick =() => {
+          history.push('/login')
+      }
+
     return (
-        <AppBar style={{backgroundColor:"transparent"}}>
-        {/* <AppBar style={{backgroundColor:"#000"}}> */}
+        <AppBar style={{backgroundColor:"transparent", boxShadow:"none"}}>
             <Container>
               <Toolbar>
                 <Typography
@@ -76,45 +83,69 @@ const Header = ({classes, theme}) => {
                         }}
                         > Products </Typography>
                       </MenuItem>
-                      <MenuItem
-                        onClick={() => setAnchor(null)}
-                        component={Link}
-                        to="/blog"
-                      >
-                        <Typography variant="h6"
-                        sx={{
-                            xs:{color:"black"},
-                            sm:{color:"black"},
-                            md:{color:"white"}
-                        }}
-                        > Blog </Typography>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => setAnchor(null)}
-                        component={Link}
-                        to="/about"
-                      >
-                        <Typography variant="h6"
-                        sx={{
-                            xs:{color:"black"},
-                            sm:{color:"black"},
-                            md:{color:"white"}
-                        }}
-                        > About </Typography>
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => setAnchor(null)}
-                        component={Link}
-                        to="/contact"
-                      >
-                        <Typography variant="h6"
-                        sx={{
-                            xs:{color:"black"},
-                            sm:{color:"black"},
-                            md:{color:"white"}
-                        }}
-                        > Contact </Typography>
-                      </MenuItem>
+                      {
+                            user?.email && 
+                            (
+                                <MenuItem
+                                onClick={() => setAnchor(null)}
+                                component={Link}
+                                to="/dashboard"
+                              >
+                                <Typography variant="h6"
+                                sx={{
+                                    xs:{color:"black"},
+                                    sm:{color:"black"},
+                                    md:{color:"white"}
+                                }}
+                                > Dashboard </Typography>
+                              </MenuItem>
+                            )
+                        }
+                        <span style={{margin:"0px 5px 0px 5px"}}>
+                            {user?.photoURL ? (
+                            <span style={{margin:"0px 5px 0px 5px"}}>
+                              <small style={{color:"#ffff"}}>{user?.displayName}</small>
+                              <img src={user.photoURL} alt=""  style={{width:"50px", border:"50%"}} />
+                            </span>
+                            ) : (
+                            <small style={{color:"#ffff"}}>{user?.displayName}</small>
+                            )}
+                        </span>
+                        {
+                        user?.email ?
+                        (
+                            <MenuItem
+                              onClick={() => setAnchor(null)}
+                              component={Link}
+                              to="/login"
+                            >
+                              <Typography variant="h6"
+                              onClick={logOut}
+                              sx={{
+                                  xs:{color:"black"},
+                                  sm:{color:"black"},
+                                  md:{color:"white"}
+                              }}
+                              > Log Out </Typography>
+                            </MenuItem>
+                        )
+                        :
+                        (
+                          <MenuItem
+                            onClick={() => setAnchor(null)}
+                            component={Link}
+                            to="/login"
+                          >
+                            <Typography variant="h6"
+                            sx={{
+                                xs:{color:"black"},
+                                sm:{color:"black"},
+                                md:{color:"white"}
+                            }}
+                            > Login </Typography>
+                          </MenuItem>
+                        )
+                        }
                     </Menu>
                   </>
                 ) : (
@@ -135,30 +166,54 @@ const Header = ({classes, theme}) => {
                     >
                       Products
                     </Button>
-                    <Button
-                      variant="text"
-                      component={Link}
-                      to="/blog"
-                      color="primary"
-                    >
-                      Blog
-                    </Button>
-                    <Button
-                      variant="text"
-                      component={Link}
-                      to="/about"
-                      color="primary"
-                    >
-                      About
-                    </Button>
-                    <Button
-                      variant="text"
-                      component={Link}
-                      to="/contact"
-                      color="primary"
-                    >
-                      Contact
-                    </Button>
+                    {
+                            user?.email && 
+                            (
+                              <Button
+                                variant="text"
+                                component={Link}
+                                to="/dashboard"
+                                color="primary"
+                              >
+                                Dashboard
+                              </Button>
+                            )
+                        }
+                        <span style={{margin:"0px 5px 0px 5px"}}>
+                            {user?.photoURL ? (
+                            <span style={{margin:"0px 5px 0px 5px"}}>
+                              <small style={{color:"#ffff"}}>{user?.displayName}</small>
+                              <img src={user.photoURL} alt=""  style={{width:"50px", border:"50%"}} />
+                            </span>
+                            ) : (
+                            <small style={{color:"#ffff"}}>{user?.displayName}</small>
+                            )}
+                        </span>
+                        {
+                          user?.email ?
+                          (
+                            <Button
+                              variant="text"
+                              component={Link}
+                              to="/login"
+                              color="primary"
+                              onClick={logOut}
+                            >
+                              Log Out
+                            </Button>
+                          )
+                          :
+                          (
+                            <Button
+                              variant="text"
+                              component={Link}
+                              to="/login"
+                              color="primary"
+                            >
+                              Login
+                            </Button>
+                          )
+                          }
                   </Box>
                 )}
               </Toolbar>

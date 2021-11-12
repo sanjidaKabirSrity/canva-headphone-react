@@ -6,9 +6,12 @@ import './App.css';
 import Header from "./Shared/Header";
 import Home from "./Pages/HomePage/Home";
 import NotFound from './Pages/NotFoundPage/NotFound';
-import Footer from "./Shared/Footer";
 import SingleProduct from "./Pages/ProductsPage/SingleProduct";
 import Products from "./Pages/ProductsPage/Products";
+import Login from "./Pages/LoginPage/Login";
+import Register from "./Pages/LoginPage/Register";
+import DashBoard from "./Pages/DashBoard/DashBoard";
+import AuthProvider from "./Context/AuthProvider";
 
 const theme = createTheme({
   palette: {
@@ -60,7 +63,8 @@ function App(props) {
   const classes = useStyles();
 
   return (
-    <CssBaseline>
+    <AuthProvider>
+      <CssBaseline>
       <div className="App">
         <ThemeProvider theme={theme}>
           <div className={classes.root}>
@@ -80,20 +84,26 @@ function App(props) {
                   <Route exact path="/products/:productId">
                     <SingleProduct></SingleProduct>
                   </Route>
-                  <Route exact path="/signup">
-                    {/* <About></About> */}
+                  <Route exact path="/login">
+                    <Login></Login>
                   </Route>
-                  <Route exact path="*">
+                  <Route exact path="/dashboard">
+                    <DashBoard></DashBoard>
+                  </Route>
+                  <Route exact path="/register">
+                    <Register></Register>
+                  </Route>
+                  <Route path="*">
                     <NotFound></NotFound>
                   </Route>
                 </Switch>
-                <Footer></Footer>
               </Router>
             </HideOnScroll>
           </div>
         </ThemeProvider>
       </div>
     </CssBaseline>
+    </AuthProvider>
   );
 }
 
