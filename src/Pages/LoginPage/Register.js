@@ -12,8 +12,8 @@ const Register = () => {
         signInWithGoogle,
         createNewUserByEmail,
         setIsLoading,
+        upsertUser
       } = useAuth();
-    const test = useAuth();
     
       // redirect private route
       const history = useHistory();
@@ -24,6 +24,9 @@ const Register = () => {
       const hanldeGoogleLogin = () => {
         signInWithGoogle()
           .then((result) => {
+             // save user to database
+            upsertUser(result?.user?.email, result?.user?.displayName);
+
             history.push(redirectUrl);
             swal({
               title: "Successfully Sign In!!",
@@ -94,8 +97,6 @@ const Register = () => {
                             {...register("Password", {
                                 required: true,
                                 min: 8,
-                                pattern:
-                                  /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8})/i,
                               })}
                     />
                   {errors.Password && (

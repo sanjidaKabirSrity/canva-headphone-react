@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import {AppBar, Button, Container, Grid, Paper, Typography } from '@mui/material';
 import { Link , useHistory } from 'react-router-dom';
 import ErrorImg from '../../Images/no_result.gif';
-import Header from '../../Shared/Header';
+import Footer from '../../Shared/Footer'
 
 const NotFoundBG = {
     background:`url(${ErrorImg})`,
@@ -20,6 +20,7 @@ const NotFound = ({classes, theme}) => {
     }
 
     return (
+    <>
         <Box style={NotFoundBG}>
             <Container>
             <Box sx={{py:20, textAlign:"center"}}>
@@ -32,6 +33,8 @@ const NotFound = ({classes, theme}) => {
             </Box>
         </Container>
         </Box>
+        <Footer></Footer>
+    </>
     );
 };
 

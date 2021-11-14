@@ -149,7 +149,7 @@ const Header = ({classes, theme}) => {
                     </Menu>
                   </>
                 ) : (
-                  <Box style={{ marginRight: "2rem"}}>
+                  <Box style={{ marginRight: "2rem", display:"flex", alignItems:"center"}}>
                     <Button
                       variant="text"
                       component={Link}
@@ -179,16 +179,16 @@ const Header = ({classes, theme}) => {
                               </Button>
                             )
                         }
-                        <span style={{margin:"0px 5px 0px 5px"}}>
+                        <p style={{margin:"0px 5px 0px 5px"}}>
                             {user?.photoURL ? (
-                            <span style={{margin:"0px 5px 0px 5px"}}>
+                            <p style={{margin:"0px 5px 0px 5px", display:"flex", alignItems:"center"}}>
                               <small style={{color:"#ffff"}}>{user?.displayName}</small>
-                              <img src={user.photoURL} alt=""  style={{width:"50px", border:"50%"}} />
-                            </span>
+                              <img src={user.photoURL} alt=""  style={{width:"50px", borderRadius:"50%"}} />
+                            </p>
                             ) : (
                             <small style={{color:"#ffff"}}>{user?.displayName}</small>
                             )}
-                        </span>
+                        </p>
                         {
                           user?.email ?
                           (

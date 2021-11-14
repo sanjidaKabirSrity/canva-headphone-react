@@ -1,12 +1,26 @@
 import { Container, Grid, Paper, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import CircularProgress from '@mui/material/CircularProgress';
 import React, { useEffect, useState } from 'react';
 
 const HomeServices = () => {
     const [services , setServices] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(()=>{
-        fetch('https://young-stream-80360.herokuapp.com/services').then(res => res.json()).then(data => setServices(data));
+        fetch('https://young-stream-80360.herokuapp.com/services').then(res => res.json()).then(data => {
+            setServices(data);
+            setIsLoading(false);
+        });
     } , []);
+
+    if (isLoading) {
+        return (
+          <Box sx={{ textAlign: "center", py: 2 }}>
+            <CircularProgress color="secondary" />
+          </Box>
+        );
+      }
 
     return (
         <Container>

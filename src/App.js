@@ -10,8 +10,9 @@ import SingleProduct from "./Pages/ProductsPage/SingleProduct";
 import Products from "./Pages/ProductsPage/Products";
 import Login from "./Pages/LoginPage/Login";
 import Register from "./Pages/LoginPage/Register";
-import DashBoard from "./Pages/DashBoard/DashBoard";
 import AuthProvider from "./Context/AuthProvider";
+import Dashboard from "./Pages/DashBoard/Dashboard/Dashboard";
+import PrivateRoute from "./Shared/PrivateRoute/PrivateRoute"
 
 const theme = createTheme({
   palette: {
@@ -81,14 +82,14 @@ function App(props) {
                   <Route exact path="/products">
                     <Products></Products>
                   </Route>
-                  <Route exact path="/products/:productId">
+                  <PrivateRoute exact path="/products/:productId">
                     <SingleProduct></SingleProduct>
-                  </Route>
+                  </PrivateRoute>
                   <Route exact path="/login">
                     <Login></Login>
                   </Route>
-                  <Route exact path="/dashboard">
-                    <DashBoard></DashBoard>
+                  <Route path="/dashboard">
+                    <Dashboard></Dashboard>
                   </Route>
                   <Route exact path="/register">
                     <Register></Register>

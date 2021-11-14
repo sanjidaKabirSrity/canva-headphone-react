@@ -8,7 +8,7 @@ import swal from "sweetalert";
 import useAuth from '../../Hooks/useAuth';
 
 const Login = () => {
-    const { signInWithGoogle, setIsLoading, loginWithEmail } = useAuth();
+    const { signInWithGoogle, setIsLoading, loginWithEmail, upsertUser } = useAuth();
 
       // redirect private route
       const history = useHistory();
@@ -19,7 +19,7 @@ const Login = () => {
     const {
         register,
         handleSubmit, 
-        formState: { errors },
+        formState: {errors},
     } = useForm();
     const onSubmit = (data) => {
         const { Email, Password } = data;
@@ -48,6 +48,9 @@ const Login = () => {
   const hanldeGoogleLogin = () => {
     signInWithGoogle()
       .then((result) => {
+         // save user to database
+         upsertUser(result?.user?.email, result?.user?.displayName);
+
         history.push(redirectUrl);
         swal({
           title: "Successfully Log In!!",
@@ -97,8 +100,6 @@ const Login = () => {
                     {...register("Password", {
                       required: true,
                       min: 8,
-                      pattern:
-                        /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8})/i,
                     })}
                   />
                   {errors.Password && (
@@ -106,7 +107,7 @@ const Login = () => {
                       Password should have at least 8 chracters, 2 uppercase, 3
                       lowercase, 1 special character, 2 numbers.
                     </Typography>
-                  )}
+                  )} 
                     <Button 
                          variant="outlined"
                         type="submit"

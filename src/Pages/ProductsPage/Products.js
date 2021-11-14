@@ -4,8 +4,10 @@ import { Button, Container, Grid, Typography } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { Link } from 'react-router-dom';
+import { Link ,useHistory, useLocation } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 import productsBannerImg from '../../Images/2h.jpg';
+import Footer from './../../Shared/Footer';
 
 const productsBannerBG = {
     background:`url(${productsBannerImg})`,
@@ -15,9 +17,23 @@ const productsBannerBG = {
 
 const Products = () => {
     const [products , setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
     useEffect(()=>{
-        fetch('https://young-stream-80360.herokuapp.com/products').then(res => res.json()).then(data => setProducts(data));
+        fetch('https://young-stream-80360.herokuapp.com/products').then(res => res.json()).then(data => {
+            setProducts(data);
+            setIsLoading(false);
+        });
     } , []);
+
+    if (isLoading) {
+        return (
+          <Box sx={{ textAlign: "center", py: 2 }}>
+            <CircularProgress color="secondary" />
+          </Box>
+        );
+      }
+
     return (
         <>
         <Box sx={{ flexGrow: 1}} style={productsBannerBG}>
@@ -60,6 +76,7 @@ const Products = () => {
                 </Grid>
             </Box>
         </Container>
+        <Footer></Footer>
         </>
     );
 };
