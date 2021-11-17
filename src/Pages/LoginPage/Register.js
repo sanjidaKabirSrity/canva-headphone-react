@@ -15,10 +15,10 @@ const Register = () => {
         upsertUser
       } = useAuth();
     
-      // redirect private route
+      // redirect route
       const history = useHistory();
       const location = useLocation();
-      const redirectUrl = location.state?.from || "/";
+      const redirectUrl = location.state?.from || "/dashboard";
     
       // google redirect
       const hanldeGoogleLogin = () => {

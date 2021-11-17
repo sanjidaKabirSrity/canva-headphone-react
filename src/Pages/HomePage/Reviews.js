@@ -56,7 +56,7 @@ const Reviews = () => {
                             {clientReview.email}
                             </Typography>
                             <Typography color="text.secondary" paragraph>
-                            {clientReview.review}
+                            {clientReview.review.slice(0, 80)}
                             </Typography>
                             <Rating
                             name="half-rating-read"

@@ -137,6 +137,7 @@ const Header = ({classes, theme}) => {
                             to="/login"
                           >
                             <Typography variant="h6"
+                            onClick={handleClick}
                             sx={{
                                 xs:{color:"black"},
                                 sm:{color:"black"},
@@ -209,6 +210,7 @@ const Header = ({classes, theme}) => {
                               component={Link}
                               to="/login"
                               color="primary"
+                              onClick={handleClick}
                             >
                               Login
                             </Button>

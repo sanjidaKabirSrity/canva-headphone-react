@@ -28,7 +28,7 @@ const SingleProduct = () => {
             setProduct(data);
             setIsLoading(false);
         })
-    }, [])
+    }, [productId])
     // console.log(product);
     if (isLoading) {
         return (
