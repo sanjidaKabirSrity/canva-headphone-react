@@ -14,7 +14,7 @@ const Header = ({classes, theme}) => {
         setAnchor(event.currentTarget);
       };
 
-      const { user, logOut } = useAuth();
+      const {user, logOut} = useAuth();
 
       const history = useHistory();
       const handleClick =() => {
