@@ -6,8 +6,10 @@ Headphones are a pair of small loudspeaker drivers worn on or around the head ov
 
 This website is used by the following companies:
 
-- Beautiful Features of various headphone
-- Headphone for All ages
-- Super Discount
-- Super Delivery System
-- Happy Client
+- Users will be able to view their orders in the dashboard on the headphone related e-commerce website
+- Users can rate the site, and the review will be displayed on the home page.
+- Admin can add or remove products and manage all orders.
+- Designed a headphone related website including login features.
+- Beautiful Features of various headphone.
+- Super Delivery System.
+- Happy Client.
